@@ -1,0 +1,55 @@
+apiVersion: apiextensions.k8s.io/v1beta1
+kind: CustomResourceDefinition
+metadata:
+  creationTimestamp: 2019-03-04T15:38:44Z
+  generation: 1
+  name: blackducks.synopsys.com
+  resourceVersion: "18975855"
+  selfLink: /apis/apiextensions.k8s.io/v1beta1/customresourcedefinitions/blackducks.synopsys.com
+  uid: 97feaa48-3e93-11e9-96b1-1206ef5b0bb2
+spec:
+  additionalPrinterColumns:
+  - JSONPath: .metadata.creationTimestamp
+    description: |-
+      CreationTimestamp is a timestamp representing the server time when this object was created. It is not guaranteed to be set in happens-before order across separate operations. Clients may not set this value. It is represented in RFC3339 form and is in UTC.
+
+      Populated by the system. Read-only. Null for lists. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#metadata
+    name: Age
+    type: date
+  group: synopsys.com
+  names:
+    kind: Blackduck
+    listKind: BlackduckList
+    plural: blackducks
+    shortNames:
+    - hub
+    - hubs
+    singular: blackduck
+  scope: Cluster
+  version: v1
+  versions:
+  - name: v1
+    served: true
+    storage: true
+status:
+  acceptedNames:
+    kind: Blackduck
+    listKind: BlackduckList
+    plural: blackducks
+    shortNames:
+    - hub
+    - hubs
+    singular: blackduck
+  conditions:
+  - lastTransitionTime: null
+    message: no conflicts found
+    reason: NoConflicts
+    status: "True"
+    type: NamesAccepted
+  - lastTransitionTime: null
+    message: the initial names have been accepted
+    reason: InitialNamesAccepted
+    status: "True"
+    type: Established
+  storedVersions:
+  - v1
