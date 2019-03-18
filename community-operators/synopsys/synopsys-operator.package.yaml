@@ -1,4 +1,0 @@
-packageName: synopsys-operator
-channels:
-    - name: stable
-      currentCSV: synopsys-operator-2019.1.0
