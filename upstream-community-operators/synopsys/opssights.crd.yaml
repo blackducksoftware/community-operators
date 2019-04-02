@@ -35,7 +35,7 @@ status:
     plural: opssights
     singular: opssight
   conditions:
-  - lastTransitionTime: 2019-03-04T15:38:49Z
+  - lastTransitionTime: null
     message: no conflicts found
     reason: NoConflicts
     status: "True"
