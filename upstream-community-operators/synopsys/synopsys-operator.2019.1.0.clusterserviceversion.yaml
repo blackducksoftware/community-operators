@@ -6,7 +6,7 @@ metadata:
   annotations:
       capabilities: "Basic Install"
       categories: "Security, Monitoring"
-      description: "Synopsys Black Duck OpsSight for Red Hat OpenShift Container Platform provides automated open source identification and monitoring in all container images in an OpenShift cluster to give teams visibility into, and control over, the risks associated with open source components in those images."
+      description: "Synopsys Operator is a cloud-native administration utility for Synopsys software."
       repository: https://github.com/blackducksoftware/synopsys-operator
       containerImage: docker.io/blackducksoftware/synopsys-operator
       createdAt: 2018-12-14T17:09:00Z
@@ -163,9 +163,27 @@ spec:
            - urn:alm:descriptor:text
       version: v1
   description: |
-    Synopsys Black Duck OpsSight for Red Hat OpenShift Container Platform provides automated open source identification and monitoring in all container images in an OpenShift cluster to give teams visibility into, and control over, the risks associated with open source components in those images.
+    Synopsys Operator is a cloud-native administration utility for Synopsys software. Synopsys Operator assists in the deployment and management of Synopsys software like Black Duck, OpsSight Connector, and Black Duck Alert, in a Kubernetes and Red Hat OpenShift environment.
 
-    ## Supported Features
+    The Synopsys Operator deployment can be managed by a utility called synopsysctl. synopsysctl makes it easy to deploy Synopsys Operator, and it eliminates the need to edit YML/JSON configuration files when deploying and managing software with Synopsys Operator. Synopsysctl provides a rich set of command-line parameters to allow for fast and highly-configurable deployments of Black Duck, OpsSight Connector, and Black Duck Alert. synopsysctl’s interface mimics that of kubectl and oc, making it immediately familiar to anyone with Kubernetes and/or Red Hat OpenShift experience.
+
+    ## Black Duck
+    Black Duck is a comprehensive solution for managing security, license compliance, and code quality risks that come from the use of open source in applications and containers. Black Duck gives you unmatched visibility into third-party code, enabling you to control it across your software supply chain and throughout the application life cycle.
+
+    ### Supported Features
+
+    * **Find and fix security vulnerabilities** at each stage in the SDLC, with detailed, vulnerability-specific remediation guidance and technical insight.
+
+    * **Eliminate risk of open source license** noncompliance and safeguard your intellectual property by using the industry’s largest open source knowledge base to identify which of 2,500+ licenses are relevant to the open source in your applications.
+
+    * **Scan virtually any software, firmware, and source code** to generate acomprehensive bill of materials (BoM) of what’s inside.
+
+    * **Automatically monitor for new vulnerabilities** hat affect your BoM, with custom policies and workflow triggers to accelerate remediation and reduce your risk exposure.
+
+    ## OpsSight Connector
+    Synopsys Black Duck OpsSight for Red Hat OpenShift Container Platform provides automated open source identification and monitoring in all container images in a Kubernetes or OpenShift cluster to give teams visibility into, and control over, the risks associated with open source components in those images.
+
+    ### Supported Features
 
     * **Automated Detection** - OpsSight’s automated multifactor open source detection inventories all the open source in container images as they are deployed.
 
@@ -174,6 +192,9 @@ spec:
     * **Policy Management** - OpsSight policy management allows teams to define open source use and security policies, which are evaluated with each scan and documented as metadata on your containers, allowing you to flag images that violate policies and prevent them from deploying to production.
 
     * **Continous Monitoring** - OpsSight continuously monitors for newly reported open source security vulnerabilities associated with open source in use, providing same-day alerts so teams can understand how newly discovered vulnerabilities affect their containers in production.
+
+    ## Black Duck Alert
+    Black Duck Alert is an additional deployment to Black Duck that enables you to see Security Vulnerability and Policy Management notifications through email, Slack or HipChat.
 
     ## About Synopsys
 
@@ -199,10 +220,14 @@ spec:
   links:
    - name: Synopsys Integrity
      url: https://www.synopsys.com/software-integrity.html
-   - name: OpsSight Data Sheet
-     url: https://www.synopsys.com/content/dam/synopsys/sig-assets/datasheets/openshift-ds-ul.pdf
    - name: Synopsys Operator Documentation
      url: https://synopsys.atlassian.net/wiki/spaces/BDLM/pages/34373652/Synopsys+Operator
+   - name: Black Duck Datasheet
+     url: https://www.synopsys.com/content/dam/synopsys/sig-assets/datasheets/blackduck-sca-ds-ul.pdf
+   - name: OpsSight Data Sheet
+     url: https://www.synopsys.com/content/dam/synopsys/sig-assets/datasheets/openshift-ds-ul.pdf
+   - name: Black Duck Alert Documentation
+     url: https://synopsys.atlassian.net/wiki/spaces/INTDOCS/pages/622882/Black+Duck+Alert
    - name: Synopsys Operator Source Code
      url: https://github.com/blackducksoftware/synopsys-operator
   installModes:
