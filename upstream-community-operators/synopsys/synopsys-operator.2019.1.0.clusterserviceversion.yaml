@@ -46,7 +46,7 @@ spec:
           - urn:alm:descriptor:com.tectonic.ui:namespaceSelector
         - description: Size of the Black Duck instance in the cluster, either Small, Medium, Large, X Large.
           displayName: Size
-          path: Size
+          path: size
           x-descriptors:
           - urn:alm:descriptor:com.tectonic.ui:label
         - description: Existing Black Duck database to clone into the new Black Duck instance.
@@ -184,53 +184,58 @@ spec:
             name: ""
             version: v1
       specDescriptors:
-        - description: Namespace for the Black Duck Connector.
+        - description: Namespace for Black Duck Alert.
           displayName: Namespace
           path: namespace
           x-descriptors:
           - urn:alm:descriptor:com.tectonic.ui:namespaceSelector
-        - description: Size of the Black Duck instance in the cluster, either Small, Medium, Large, X Large.
-          displayName: Size
-          path: Size
+        - description: Container registry where the Black Duck Alert images reside.
+          displayName: Registry
+          path: registry
           x-descriptors:
           - urn:alm:descriptor:com.tectonic.ui:label
-        - description: Existing Black Duck database to clone into the new Black Duck instance.
-          displayName: DbPrototype
-          path: dbPrototype
+        - description: Path to the Black Duck Alert images.
+          displayName: ImagePath
+          path: imagePath
           x-descriptors:
           - urn:alm:descriptor:com.tectonic.ui:label
-        - description: Verifies that all Black Duck containers are running properly and restarts them if they fail.
-          displayName: LivenessProbes
-          path: livenessProbes
+        - description: Name of the Alert container image.
+          displayName: AlertImageName
+          path: alertImageName
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:label
+        - description: Version of the Alert container image.
+          displayName: AlertImageVersion
+          path: alertImageVersion
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:label
+        - description: Black Duck Host name.
+          displayName: BlackduckHost
+          path: blackduckHost
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:label
+        - description: Black Duck user name.
+          displayName: BlackduckUser
+          path: blackduckUser
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:label
+        - description: Black Duck Port
+          displayName: BlackduckPort
+          path: blackduckPort
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:label
+        - description: Alert Server Port
+          displayName: Port
+          path: port
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:label
+        - description: Is this a stand alone deployment or installed with Black Duck.
+          displayName: StandAlone
+          path: standAlone
           x-descriptors:
           - urn:alm:descriptor:com.tectonic.ui:booleanSwitch
-        - description: If this Black Duck instance uses a persistent volume claim.
-          displayName: PersistentStorage
-          path: persistentStorage
-          x-descriptors:
-          - urn:alm:descriptor:com.tectonic.ui:booleanSwitch
-        - description: Type of Black Duck instance, which indicates relationship with OpsSight Connector.
-          displayName: Type
-          path: type
-          x-descriptors:
-          - urn:alm:descriptor:com.tectonic.ui:label
-        - description: Names and versions of the Black Duck container images.
-          displayName: ImageRegistries
-          path: imageRegistries
-          x-descriptors:
-          - urn:alm:descriptor:com.tectonic.ui:label
-        - description: Black Duck license key.
-          displayName: LicenseKey
-          path: licenseKey
-          x-descriptors:
-          - urn:alm:descriptor:com.tectonic.ui:label
       statusDescriptors:
-        - description: Externally Black Duck instance IP address, if known.
-          displayName: IP
-          path: ip
-          x-descriptors:
-          - urn:alm:descriptor:com.tectonic.ui:podStatuses
-        - description: The state of the Black Duck instance.
+        - description: The state of Black Duck Alert.
           displayName: State
           path: state
           x-descriptors:
