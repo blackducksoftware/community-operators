@@ -362,15 +362,16 @@ spec:
           spec:
             replicas: 1
             selector:
-              app: synopsys-operator
-              component: operator
+              matchLabels:
+                app: synopsys-operator
+                component: operator
+            strategy:
+              type: Recreate
             template:
               metadata:
                 labels:
                   app: synopsys-operator
                   component: operator
-                name: synopsys-operator
-                namespace: placeholder
               spec:
                 serviceAccountName: synopsys-operator
                 containers:
