@@ -12,9 +12,9 @@ metadata:
       createdAt: 2018-12-14T17:09:00Z
       support: Synopsys
       certified: "False"
-      alm-examples: '[{"apiVersion": "synopsys.com/v1", "kind": "OpsSight", "metadata": { "name": "opssight-test" }, "spec": { "namespace": "opssight-test", "perceptor": { "name": "opssight-core", "port": 3001, "image": "docker.io/blackducksoftware/opssight-core:2.2.2", "checkForStalledScansPauseHours": 999999, "stalledScanClientTimeoutHours": 999999, "modelMetricsPauseSeconds": 15, "unknownImagePauseMilliseconds": 15000, "clientTimeoutMilliseconds": 100000 }, "scannerPod": { "name": "opssight-scanner", "scanner": { "name": "opssight-scanner", "port": 3003, "image": "docker.io/blackducksoftware/opssight-scanner:2.2.2", "clientTimeoutSeconds": 600 }, "imageFacade": { "name": "opssight-image-getter", "port": 3004, "internalRegistries": [], "image": "docker.io/blackducksoftware/opssight-image-getter:2.2.2", "serviceAccount": "opssight-scanner", "imagePullerType": "skopeo" }, "replicaCount": 1 }, "perceiver": { "enableImagePerceiver": false, "enablePodPerceiver": true, "port": 3002, "imagePerceiver": { "name": "opssight-image-processor", "image": "docker.io/blackducksoftware/opssight-image-processor:2.2.2" }, "podPerceiver": { "name": "opssight-pod-processor", "image": "docker.io/blackducksoftware/opssight-pod-processor:2.2.2" }, "serviceAccount": "opssight-processor", "annotationIntervalSeconds": 30, "dumpIntervalMinutes": 30 }, "prometheus": { "name": "prometheus", "port": 9090, "image": "docker.io/prom/prometheus:v2.1.0" }, "enableSkyfire": false, "skyfire": { "image": "gcr.io/saas-hub-stg/blackducksoftware/pyfire:master", "name": "skyfire", "port": 3005, "prometheusPort": 3006, "serviceAccount": "skyfire", "hubClientTimeoutSeconds": 120, "hubDumpPauseSeconds": 240, "kubeDumpIntervalSeconds": 60, "perceptorDumpIntervalSeconds": 60 }, "enableMetrics": true, "defaultCPU": "300m", "defaultMem": "1300Mi", "logLevel": "debug", "secretName": "blackduck", "blackduck": { "user": "sysadmin", "initialCount": 0, "maxCount": 0, "concurrentScanLimit": 2, "totalScanLimit": 1000, "blackduckSpec": { "licenseKey": "byol-contact-synopsys", "persistentStorage": false, "certificateName": "default", "dbPrototype": "", "size": "small", "type": "worker", "imageRegistries": [ "docker.io/blackducksoftware/blackduck-authentication:2018.12.2", "docker.io/blackducksoftware/blackduck-documentation:2018.12.2", "docker.io/blackducksoftware/blackduck-jobrunner:2018.12.2", "docker.io/blackducksoftware/blackduck-registration:2018.12.2", "docker.io/blackducksoftware/blackduck-scan:2018.12.2", "docker.io/blackducksoftware/blackduck-webapp:2018.12.2", "docker.io/blackducksoftware/blackduck-cfssl:1.0.0", "docker.io/blackducksoftware/blackduck-logstash:1.0.2", "docker.io/blackducksoftware/blackduck-nginx:1.0.0", "docker.io/blackducksoftware/blackduck-solr:1.0.0", "docker.io/blackducksoftware/blackduck-zookeeper:1.0.0" ], "environs": [ "HUB_VERSION:2018.12.2" ] } } } },
-      { "apiVersion": "synopsys.com/v1", "kind": "Blackduck", "metadata": { "name": "blackduck-ephemeral" }, "spec": { "namespace": "blackduck-ephemeral", "licenseKey": "<BLACKDUCK_LICENSE_KEY>", "certificateName": "default", "environs": [ "HTTPS_VERIFY_CERTS:yes", "HUB_POSTGRES_ENABLE_SSL:false", "HUB_VERSION:2018.12.2", "IPV4_ONLY:0", "RABBITMQ_DEFAULT_VHOST:protecodesc", "USE_ALERT:0", "CFSSL:cfssl:8888", "PUBLIC_HUB_WEBSERVER_HOST:localhost", "RABBITMQ_SSL_FAIL_IF_NO_PEER_CERT:false", "HUB_POSTGRES_ADMIN:blackduck", "HUB_PROXY_NON_PROXY_HOSTS:solr", "PUBLIC_HUB_WEBSERVER_PORT:443", "DISABLE_HUB_DASHBOARD:#hub-webserver.env", "HUB_LOGSTASH_HOST:logstash", "RABBIT_MQ_PORT:5671", "USE_BINARY_UPLOADS:0", "BROKER_USE_SSL:yes", "RABBIT_MQ_HOST:rabbitmq", "CLIENT_CERT_CN:binaryscanner", "HUB_POSTGRES_USER:blackduck_user", "BLACKDUCK_REPORT_IGNORED_COMPONENTS:false", "BROKER_URL:amqps://rabbitmq/protecodesc", "SCANNER_CONCURRENCY:1", "HUB_WEBSERVER_PORT:8443" ], "imageRegistries": [ "docker.io/blackducksoftware/blackduck-authentication:2018.12.2", "docker.io/blackducksoftware/blackduck-documentation:2018.12.2", "docker.io/blackducksoftware/blackduck-jobrunner:2018.12.2", "docker.io/blackducksoftware/blackduck-registration:2018.12.2", "docker.io/blackducksoftware/blackduck-scan:2018.12.2", "docker.io/blackducksoftware/blackduck-webapp:2018.12.2", "docker.io/blackducksoftware/blackduck-cfssl:1.0.0", "docker.io/blackducksoftware/blackduck-logstash:1.0.2", "docker.io/blackducksoftware/blackduck-nginx:1.0.0", "docker.io/blackducksoftware/blackduck-solr:1.0.0", "docker.io/blackducksoftware/blackduck-zookeeper:1.0.0" ], "livenessProbes": false, "persistentStorage": false, "size": "Small" } },
-      { "apiVersion": "synopsys.com/v1", "kind": "Alert", "metadata": { "clusterName": "", "name": "alert-test" }, "spec": { "namespace": "alert-test", "registry": "docker.io", "imagePath": "blackducksoftware", "alertImageName": "blackduck-alert", "alertImageVersion": "3.1.0", "cfsslImageName": "blackduck-cfssl", "cfsslImageVersion": "1.0.0", "exposeService": "LOADBALANCER", "port": 8443, "standAlone": true, "persistentStorage": true, "pvcName": "alert-pvc", "pvcStorageClass": "", "pvcSize": "5G", "alertMemory": "2560M", "cfsslMemory": "640M", "encryptionPassword": "", "encryptionGlobalSalt": "", "environs": [ "ALERT_SERVER_PORT:8443", "PUBLIC_HUB_WEBSERVER_HOST:<<HOST>>", "PUBLIC_HUB_WEBSERVER_PORT:443" ] } }]'
+      alm-examples: '[{"apiVersion": "synopsys.com/v1", "kind": "OpsSight", "metadata": { "name": "opssight-test" }, "spec": { "namespace": "opssight-test", "perceptor": { "name": "opssight-core", "port": 3001, "image": "docker.io/blackducksoftware/opssight-core:latest", "checkForStalledScansPauseHours": 999999, "stalledScanClientTimeoutHours": 999999, "modelMetricsPauseSeconds": 15, "unknownImagePauseMilliseconds": 15000, "clientTimeoutMilliseconds": 100000, "expose": "" }, "scannerPod": { "name": "opssight-scanner", "scanner": { "name": "opssight-scanner", "port": 3003, "image": "docker.io/blackducksoftware/opssight-scanner:latest", "clientTimeoutSeconds": 600 }, "imageFacade": { "name": "opssight-image-getter", "port": 3004, "internalRegistries": [], "image": "docker.io/blackducksoftware/opssight-image-getter:latest", "serviceAccount": "opssight-scanner", "imagePullerType": "skopeo" }, "replicaCount": 1 }, "perceiver": { "enableImagePerceiver": false, "enablePodPerceiver": true, "port": 3002, "imagePerceiver": { "name": "opssight-image-processor", "image": "docker.io/blackducksoftware/opssight-image-processor:latest" }, "podPerceiver": { "name": "opssight-pod-processor", "image": "docker.io/blackducksoftware/opssight-pod-processor:latest" }, "serviceAccount": "opssight-processor", "annotationIntervalSeconds": 30, "dumpIntervalMinutes": 30 }, "prometheus": { "name": "prometheus", "port": 9090, "image": "docker.io/prom/prometheus:v2.1.0", "expose": "" }, "enableSkyfire": false, "skyfire": { "image": "gcr.io/saas-hub-stg/blackducksoftware/pyfire:master", "name": "skyfire", "port": 3005, "prometheusPort": 3006, "serviceAccount": "skyfire", "hubClientTimeoutSeconds": 120, "hubDumpPauseSeconds": 240, "kubeDumpIntervalSeconds": 60, "perceptorDumpIntervalSeconds": 60 }, "enableMetrics": true, "defaultCPU": "300m", "defaultMem": "1300Mi", "scannerCPU": "300m", "scannerMem": "1300Mi", "logLevel": "debug", "configMapName": "blackduck", "secretName": "blackduck", "blackduck": { "externalHosts": null, "connectionsEnvironmentVariableName": "blackduck.json", "tlsVerification": false, "initialCount": 0, "maxCount": 0, "blackduckSpec": { "namespace": "", "size": "small", "version": "2019.4.0", "exposeService": "", "livenessProbes": false, "persistentStorage": false, "certificateName": "default", "licenseKey": "byol-contact-synopsys" } } } },
+      { "apiVersion": "synopsys.com/v1", "kind": "Blackduck", "metadata": { "name": "blackduck-ephemeral" }, "spec": { "namespace": "blackduck-ephemeral", "size": "Small", "version": "2019.4.0", "exposeService": "", "livenessProbes": false, "persistentStorage": false, "licenseKey": "<BLACKDUCK_LICENSE_KEY>", "certificateName": "default" } },
+      { "apiVersion": "synopsys.com/v1", "kind": "Alert", "metadata": { "clusterName": "", "name": "alert-test" }, "spec": { "namespace": "alert-test", "version": "4.0.0", "alertImage": "docker.io/blackducksoftware/blackduck-alert:4.0.0", "cfsslImage": "docker.io/blackducksoftware/blackduck-cfssl:1.0.0", "exposeService": "", "standAlone": true, "port": 8443, "persistentStorage": false, "alertMemory": "2560M", "cfsslMemory": "640M", "encryptionPassword": "", "encryptionGlobalSalt": "", "environs": [ "ALERT_SERVER_PORT:8443", "PUBLIC_HUB_WEBSERVER_HOST:<<BLACK_DUCK_HOST>>", "PUBLIC_HUB_WEBSERVER_PORT:443" ] } }]'
 spec:
   customresourcedefinitions:
     owned:
@@ -95,6 +95,11 @@ spec:
         - description: Names and versions of the Black Duck container images.
           displayName: ImageRegistries
           path: imageRegistries
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:label
+        - description: List of Environment variables to be in the Black Duck container.
+          displayName: Environs
+          path: environs
           x-descriptors:
           - urn:alm:descriptor:com.tectonic.ui:label
       statusDescriptors:
@@ -219,14 +224,9 @@ spec:
           path: namespace
           x-descriptors:
           - urn:alm:descriptor:com.tectonic.ui:namespaceSelector
-        - description: Container registry where the Black Duck Alert images reside.
-          displayName: Registry
-          path: registry
-          x-descriptors:
-          - urn:alm:descriptor:com.tectonic.ui:label
-        - description: Path to the Black Duck Alert images.
-          displayName: ImagePath
-          path: imagePath
+        - description: Alert Version.
+          displayName: Version
+          path: version
           x-descriptors:
           - urn:alm:descriptor:com.tectonic.ui:label
         - description: Name of the Alert container image.
@@ -239,31 +239,31 @@ spec:
           path: alertImageVersion
           x-descriptors:
           - urn:alm:descriptor:com.tectonic.ui:label
-        - description: Black Duck Host name.
-          displayName: BlackduckHost
-          path: blackduckHost
-          x-descriptors:
-          - urn:alm:descriptor:com.tectonic.ui:label
-        - description: Black Duck user name.
-          displayName: BlackduckUser
-          path: blackduckUser
-          x-descriptors:
-          - urn:alm:descriptor:com.tectonic.ui:label
-        - description: Black Duck Port
-          displayName: BlackduckPort
-          path: blackduckPort
-          x-descriptors:
-          - urn:alm:descriptor:com.tectonic.ui:label
         - description: Alert Server Port
           displayName: Port
           path: port
           x-descriptors:
           - urn:alm:descriptor:com.tectonic.ui:label
+        - description: The default amount of memory required for a alert container to run.
+          displayName: AlertMem
+          path: alertMem
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:resourceRequirements
+        - description: The default amount of memory required for a cfssl container to run.
+          displayName: CfsslMem
+          path: cfsslMem
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:resourceRequirements
         - description: Is this a stand alone deployment or installed with Black Duck.
           displayName: StandAlone
           path: standAlone
           x-descriptors:
           - urn:alm:descriptor:com.tectonic.ui:booleanSwitch
+        - description: List of Environment variables to be in the Alert container.
+          displayName: Environs
+          path: environs
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:label
       statusDescriptors:
         - description: The state of Black Duck Alert.
           displayName: State
