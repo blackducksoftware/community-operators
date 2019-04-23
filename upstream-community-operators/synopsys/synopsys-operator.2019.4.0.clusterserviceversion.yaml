@@ -384,7 +384,7 @@ spec:
                         key: SEAL_KEY
                         name: blackduck-secret
                         optional: false
-                  image: docker.io/blackducksoftware/synopsys-operator:2019.4.0
+                  image: docker.io/blackducksoftware/synopsys-operator:2019.4.0-RC
                   imagePullPolicy: Always
                   name: synopsys-operator
                   ports:
@@ -407,7 +407,7 @@ spec:
                     value: "3000"
                   - name: GO_ENV
                     value: production
-                  image: docker.io/blackducksoftware/synopsys-operator:2019.4.0
+                  image: docker.io/blackducksoftware/synopsys-operator:2019.4.0-RC
                   imagePullPolicy: Always
                   name: synopsys-operator-ui
                   ports:
