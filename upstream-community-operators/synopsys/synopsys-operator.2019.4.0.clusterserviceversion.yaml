@@ -44,10 +44,10 @@ spec:
             version: v1
           - kind: ClusterRole
             name: ""
-            version: v1
+            version: rbac.authorization.k8s.io/v1
           - kind: ClusterRoleBinding
             name: ""
-            version: v1
+            version: rbac.authorization.k8s.io/v1
           - kind: PersistentVolumeClaim
             name: ""
             version: v1
@@ -143,10 +143,10 @@ spec:
             version: v1
           - kind: ClusterRole
             name: ""
-            version: v1
+            version: rbac.authorization.k8s.io/v1
           - kind: ClusterRoleBinding
             name: ""
-            version: v1
+            version: rbac.authorization.k8s.io/v1
       specDescriptors:
         - description: Namespace for the OpsSight Connector.
           displayName: Namespace
