@@ -372,8 +372,10 @@ spec:
                 name: synopsys-operator
                 namespace: placeholder
               spec:
+                serviceAccountName: synopsys-operator
                 containers:
-                - args:
+                - name: synopsys-operator
+                  args:
                   - /etc/synopsys-operator/config.json
                   command:
                   - ./operator
@@ -386,19 +388,16 @@ spec:
                         optional: false
                   image: docker.io/blackducksoftware/synopsys-operator:2019.4.0-RC
                   imagePullPolicy: Always
-                  name: synopsys-operator
                   ports:
                   - containerPort: 8080
                     protocol: TCP
-                  resources: {}
-                  terminationMessagePath: /dev/termination-log
-                  terminationMessagePolicy: File
                   volumeMounts:
                   - mountPath: /etc/synopsys-operator
                     name: synopsys-operator
                   - mountPath: /opt/synopsys-operator/tls
                     name: synopsys-operator-tls
-                - command:
+                - name: synopsys-operator-ui
+                  command:
                   - ./app
                   env:
                   - name: ADDR
@@ -409,29 +408,18 @@ spec:
                     value: production
                   image: docker.io/blackducksoftware/synopsys-operator:2019.4.0-RC
                   imagePullPolicy: Always
-                  name: synopsys-operator-ui
                   ports:
                   - containerPort: 3000
                     protocol: TCP
-                  resources: {}
-                  terminationMessagePath: /dev/termination-log
-                  terminationMessagePolicy: File
-                  dnsPolicy: ClusterFirst
-                  restartPolicy: Always
-                  schedulerName: default-scheduler
-                  securityContext: {}
-                  serviceAccount: synopsys-operator
-                  serviceAccountName: synopsys-operator
-                  terminationGracePeriodSeconds: 30
-                  volumes:
-                  - configMap:
-                      defaultMode: 420
-                      name: synopsys-operator
+                volumes:
+                - configMap:
+                    defaultMode: 420
                     name: synopsys-operator
-                  - name: synopsys-operator-tls
-                    secret:
-                      defaultMode: 420
-                      secretName: synopsys-operator-tls
+                  name: synopsys-operator
+                - name: synopsys-operator-tls
+                  secret:
+                    defaultMode: 420
+                    secretName: synopsys-operator-tls
       permissions:
       - serviceAccountName: synopsys-operator
         rules:
