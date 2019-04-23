@@ -13,8 +13,8 @@ metadata:
       support: Synopsys
       certified: "False"
       alm-examples: '[{"apiVersion": "synopsys.com/v1", "kind": "OpsSight", "metadata": { "name": "opssight-test" }, "spec": { "namespace": "opssight-test", "perceptor": { "name": "opssight-core", "port": 3001, "image": "docker.io/blackducksoftware/opssight-core:latest", "checkForStalledScansPauseHours": 999999, "stalledScanClientTimeoutHours": 999999, "modelMetricsPauseSeconds": 15, "unknownImagePauseMilliseconds": 15000, "clientTimeoutMilliseconds": 100000, "expose": "" }, "scannerPod": { "name": "opssight-scanner", "scanner": { "name": "opssight-scanner", "port": 3003, "image": "docker.io/blackducksoftware/opssight-scanner:latest", "clientTimeoutSeconds": 600 }, "imageFacade": { "name": "opssight-image-getter", "port": 3004, "internalRegistries": [], "image": "docker.io/blackducksoftware/opssight-image-getter:latest", "serviceAccount": "opssight-scanner", "imagePullerType": "skopeo" }, "replicaCount": 1 }, "perceiver": { "enableImagePerceiver": false, "enablePodPerceiver": true, "port": 3002, "imagePerceiver": { "name": "opssight-image-processor", "image": "docker.io/blackducksoftware/opssight-image-processor:latest" }, "podPerceiver": { "name": "opssight-pod-processor", "image": "docker.io/blackducksoftware/opssight-pod-processor:latest" }, "serviceAccount": "opssight-processor", "annotationIntervalSeconds": 30, "dumpIntervalMinutes": 30 }, "prometheus": { "name": "prometheus", "port": 9090, "image": "docker.io/prom/prometheus:v2.1.0", "expose": "" }, "enableSkyfire": false, "skyfire": { "image": "gcr.io/saas-hub-stg/blackducksoftware/pyfire:master", "name": "skyfire", "port": 3005, "prometheusPort": 3006, "serviceAccount": "skyfire", "hubClientTimeoutSeconds": 120, "hubDumpPauseSeconds": 240, "kubeDumpIntervalSeconds": 60, "perceptorDumpIntervalSeconds": 60 }, "enableMetrics": true, "defaultCPU": "300m", "defaultMem": "1300Mi", "scannerCPU": "300m", "scannerMem": "1300Mi", "logLevel": "debug", "configMapName": "blackduck", "secretName": "blackduck", "blackduck": { "externalHosts": null, "connectionsEnvironmentVariableName": "blackduck.json", "tlsVerification": false, "initialCount": 0, "maxCount": 0, "blackduckSpec": { "namespace": "", "size": "small", "version": "2019.4.0", "exposeService": "", "livenessProbes": false, "persistentStorage": false, "certificateName": "default", "licenseKey": "byol-contact-synopsys" } } } },
-      { "apiVersion": "synopsys.com/v1", "kind": "Blackduck", "metadata": { "name": "blackduck-ephemeral" }, "spec": { "namespace": "blackduck-ephemeral", "size": "Small", "version": "2019.4.0", "exposeService": "", "livenessProbes": false, "persistentStorage": false, "licenseKey": "<BLACKDUCK_LICENSE_KEY>", "certificateName": "default" } },
-      { "apiVersion": "synopsys.com/v1", "kind": "Alert", "metadata": { "clusterName": "", "name": "alert-test" }, "spec": { "namespace": "alert-test", "version": "4.0.0", "alertImage": "docker.io/blackducksoftware/blackduck-alert:4.0.0", "cfsslImage": "docker.io/blackducksoftware/blackduck-cfssl:1.0.0", "exposeService": "", "standAlone": true, "port": 8443, "persistentStorage": false, "alertMemory": "2560M", "cfsslMemory": "640M", "encryptionPassword": "", "encryptionGlobalSalt": "", "environs": [ "ALERT_SERVER_PORT:8443", "PUBLIC_HUB_WEBSERVER_HOST:<<BLACK_DUCK_HOST>>", "PUBLIC_HUB_WEBSERVER_PORT:443" ] } }]'
+          { "apiVersion": "synopsys.com/v1", "kind": "Blackduck", "metadata": { "name": "blackduck-ephemeral" }, "spec": { "namespace": "blackduck-ephemeral", "size": "Small", "version": "2019.4.0", "exposeService": "", "livenessProbes": false, "persistentStorage": false, "licenseKey": "<BLACKDUCK_LICENSE_KEY>", "certificateName": "default" } },
+          { "apiVersion": "synopsys.com/v1", "kind": "Alert", "metadata": { "clusterName": "", "name": "alert-test" }, "spec": { "namespace": "alert-test", "version": "4.0.0", "alertImage": "docker.io/blackducksoftware/blackduck-alert:4.0.0", "cfsslImage": "docker.io/blackducksoftware/blackduck-cfssl:1.0.0", "exposeService": "", "standAlone": true, "port": 8443, "persistentStorage": false, "alertMemory": "2560M", "cfsslMemory": "640M", "encryptionPassword": "", "encryptionGlobalSalt": "", "environs": [ "ALERT_SERVER_PORT:8443", "PUBLIC_HUB_WEBSERVER_HOST:<<BLACK_DUCK_HOST>>", "PUBLIC_HUB_WEBSERVER_PORT:443" ] } }]'
 spec:
   customresourcedefinitions:
     owned:
@@ -355,82 +355,83 @@ spec:
    - type: AllNamespaces
      supported: true
   install:
-    strategy: ReplicationController
+    strategy: Deployment
     spec:
-      replicationcontrollers:
-        spec:
-          replicas: 1
-          selector:
-            app: synopsys-operator
-            component: operator
-          template:
-            metadata:
-              labels:
-                app: synopsys-operator
-                component: operator
-              name: synopsys-operator
-              namespace: placeholder
-            spec:
-              containers:
-              - args:
-                - /etc/synopsys-operator/config.json
-                command:
-                - ./operator
-                env:
-                - name: SEAL_KEY
-                  valueFrom:
-                    secretKeyRef:
-                      key: SEAL_KEY
-                      name: blackduck-secret
-                      optional: false
-                image: docker.io/blackducksoftware/synopsys-operator:2019.4.0
-                imagePullPolicy: Always
+      deployments:
+        - name: synopsys-operator
+          spec:
+            replicas: 1
+            selector:
+              app: synopsys-operator
+              component: operator
+            template:
+              metadata:
+                labels:
+                  app: synopsys-operator
+                  component: operator
                 name: synopsys-operator
-                ports:
-                - containerPort: 8080
-                  protocol: TCP
-                resources: {}
-                terminationMessagePath: /dev/termination-log
-                terminationMessagePolicy: File
-                volumeMounts:
-                - mountPath: /etc/synopsys-operator
+                namespace: placeholder
+              spec:
+                containers:
+                - args:
+                  - /etc/synopsys-operator/config.json
+                  command:
+                  - ./operator
+                  env:
+                  - name: SEAL_KEY
+                    valueFrom:
+                      secretKeyRef:
+                        key: SEAL_KEY
+                        name: blackduck-secret
+                        optional: false
+                  image: docker.io/blackducksoftware/synopsys-operator:2019.4.0
+                  imagePullPolicy: Always
                   name: synopsys-operator
-                - mountPath: /opt/synopsys-operator/tls
-                  name: synopsys-operator-tls
-              - command:
-                - ./app
-                env:
-                - name: ADDR
-                  value: 0.0.0.0
-                - name: PORT
-                  value: "3000"
-                - name: GO_ENV
-                  value: production
-                image: docker.io/blackducksoftware/synopsys-operator:2019.4.0
-                imagePullPolicy: Always
-                name: synopsys-operator-ui
-                ports:
-                - containerPort: 3000
-                  protocol: TCP
-                resources: {}
-                terminationMessagePath: /dev/termination-log
-                terminationMessagePolicy: File
-              dnsPolicy: ClusterFirst
-              restartPolicy: Always
-              schedulerName: default-scheduler
-              securityContext: {}
-              serviceAccount: synopsys-operator
-              serviceAccountName: synopsys-operator
-              terminationGracePeriodSeconds: 30
-              volumes:
-              - configMap:
-                  defaultMode: 420
+                  ports:
+                  - containerPort: 8080
+                    protocol: TCP
+                  resources: {}
+                  terminationMessagePath: /dev/termination-log
+                  terminationMessagePolicy: File
+                  volumeMounts:
+                  - mountPath: /etc/synopsys-operator
+                    name: synopsys-operator
+                  - mountPath: /opt/synopsys-operator/tls
+                    name: synopsys-operator-tls
+                - command:
+                  - ./app
+                  env:
+                  - name: ADDR
+                    value: 0.0.0.0
+                  - name: PORT
+                    value: "3000"
+                  - name: GO_ENV
+                    value: production
+                  image: docker.io/blackducksoftware/synopsys-operator:2019.4.0
+                  imagePullPolicy: Always
+                  name: synopsys-operator-ui
+                  ports:
+                  - containerPort: 3000
+                    protocol: TCP
+                  resources: {}
+                  terminationMessagePath: /dev/termination-log
+                  terminationMessagePolicy: File
+                dnsPolicy: ClusterFirst
+                restartPolicy: Always
+                schedulerName: default-scheduler
+                securityContext: {}
+                serviceAccount: synopsys-operator
+                serviceAccountName: synopsys-operator
+                terminationGracePeriodSeconds: 30
+                volumes:
+                - configMap:
+                    defaultMode: 420
+                    name: synopsys-operator
                   name: synopsys-operator
-                name: synopsys-operator
-              - name: synopsys-operator-tls
-                secret:
-                  defaultMode: 420
-                  secretName: synopsys-operator-tls
+                - name: synopsys-operator-tls
+                  secret:
+                    defaultMode: 420
+                    secretName: synopsys-operator-tls
       permissions:
       - serviceAccountName: synopsys-operator
         rules:
