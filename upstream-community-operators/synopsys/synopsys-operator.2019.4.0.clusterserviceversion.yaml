@@ -305,27 +305,34 @@ spec:
               serviceAccountName: synopsys-operator
               containers:
               - name: synopsys-operator
-                args:
-                - /etc/synopsys-operator/config.json
                 command:
                 - ./operator
                 env:
                 - name: SEAL_KEY
-                  valueFrom:
-                    secretKeyRef:
-                      key: SEAL_KEY
-                      name: blackduck-secret
-                      optional: false
+                  value: "abcdefghijklmnopqrstuvwxyz01234!"
+                - name: "SO_DRYRUN"
+                  value: false
+                - name: "SO_LOGLEVEL"
+                  value: "debug"
+                - name: "SO_NAMESPACE"
+                  value: ""
+                - name: "SO_THREADINESS"
+                  value: 5
+                - name: "SO_POSTGRESRESTARTINMINS"
+                  value: 10
+                - name: "SO_PODWAITTIMEOUTSECONDS"
+                  value: 600
+                - name: "SO_RESYNCINTERVALINSECONDS"
+                  value: 120
+                - name: "SO_TERMINATIONGRACEPERIODSECONDS"
+                  value: 180
+                - name: "SO_OPERATORTIMEBOMBINSECONDS"
+                  value: 315576000
                 image: docker.io/blackducksoftware/synopsys-operator:2019.4.0-RC
                 imagePullPolicy: Always
                 ports:
                 - containerPort: 8080
                   protocol: TCP
-                volumeMounts:
-                - mountPath: /etc/synopsys-operator
-                  name: synopsys-operator
-                - mountPath: /opt/synopsys-operator/tls
-                  name: synopsys-operator-tls
               - name: synopsys-operator-ui
                 command:
                 - ./app
@@ -341,15 +348,6 @@ spec:
                 ports:
                 - containerPort: 3000
                   protocol: TCP
-              volumes:
-              - configMap:
-                  defaultMode: 420
-                  name: synopsys-operator
-                name: synopsys-operator
-              - name: synopsys-operator-tls
-                secret:
-                  defaultMode: 420
-                  secretName: synopsys-operator-tls
   customresourcedefinitions:
     owned:
     - description: Manages Black Duck instances
