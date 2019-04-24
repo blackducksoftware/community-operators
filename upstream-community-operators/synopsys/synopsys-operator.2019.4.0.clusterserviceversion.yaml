@@ -4,7 +4,7 @@ metadata:
   name: synopsys-operator.2019.4.0
   namespace: placeholder
   annotations:
-      capabilities: "Basic Install"
+      capabilities: "Full Lifecycle"
       categories: "Security, Monitoring"
       description: "Synopsys Operator is a cloud-native administration utility for Synopsys software."
       repository: https://github.com/blackducksoftware/synopsys-operator
