@@ -603,7 +603,7 @@ spec:
           path: state
           x-descriptors:
           - urn:alm:descriptor:com.tectonic.ui:podStatuses
-        - description: Error Message.
+        - description: Current Error Message.
           displayName: ErrorMessage
           path: errorMessage
           x-descriptors:
