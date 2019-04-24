@@ -231,8 +231,6 @@ spec:
      url: https://www.synopsys.com/content/dam/synopsys/sig-assets/datasheets/openshift-ds-ul.pdf
    - name: Black Duck Alert Documentation
      url: https://synopsys.atlassian.net/wiki/spaces/INTDOCS/pages/622882/Black+Duck+Alert
-   - name: Synopsys Operator Source Code
-     url: https://github.com/blackducksoftware/synopsys-operator
   installModes:
    - type: OwnNamespace
      supported: true
