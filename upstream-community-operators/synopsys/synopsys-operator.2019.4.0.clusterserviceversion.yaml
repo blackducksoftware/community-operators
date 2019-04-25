@@ -11,7 +11,7 @@ metadata:
       containerImage: docker.io/blackducksoftware/synopsys-operator:2019.4.0-RC
       createdAt: 2018-12-14T17:09:00Z
       support: Synopsys, Inc
-      certified: "False"
+      certified: "false"
       alm-examples: |-
         [
           {
