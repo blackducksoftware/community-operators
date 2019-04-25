@@ -11,7 +11,7 @@ metadata:
       containerImage: registry.connect.redhat.com/blackducksoftware/synopsys-operator:latest
       createdAt: 2018-12-14T17:09:00Z
       support: Synopsys, Inc
-      certified: "False"
+      certified: "false"
       alm-examples: |-
         [
           {
