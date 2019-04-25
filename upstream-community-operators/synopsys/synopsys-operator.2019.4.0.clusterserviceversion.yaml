@@ -166,12 +166,12 @@ spec:
   displayName: Synopsys Operator
   version: 2019.4.0
   description: |-
-    Synopsys Operator is a cloud-native administration utility for Synopsys software. Synopsys Operator assists in the deployment and management of Synopsys software like Black Duck, OpsSight Connector, and Black Duck Alert, in a Kubernetes and Red Hat OpenShift environment.
+    [Synopsys Operator](https://synopsys.atlassian.net/wiki/spaces/BDLM/pages/34373652/Synopsys+Operator) is a cloud-native administration utility for Synopsys software. Synopsys Operator assists in the deployment and management of Synopsys software like Black Duck, OpsSight Connector, and Black Duck Alert, in a Kubernetes and Red Hat OpenShift environment.
 
-    The Synopsys Operator deployment can be managed by a utility called synopsysctl. synopsysctl makes it easy to deploy Synopsys Operator, and it eliminates the need to edit YML/JSON configuration files when deploying and managing software with Synopsys Operator. Synopsysctl provides a rich set of command-line parameters to allow for fast and highly-configurable deployments of Black Duck, OpsSight Connector, and Black Duck Alert. synopsysctl’s interface mimics that of kubectl and oc, making it immediately familiar to anyone with Kubernetes and/or Red Hat OpenShift experience.
+    The Synopsys Operator deployment can be managed by a utility called [synopsysctl](https://github.com/blackducksoftware/synopsys-operator/releases). synopsysctl makes it easy to deploy Synopsys Operator, and it eliminates the need to edit YML/JSON configuration files when deploying and managing software with Synopsys Operator. Synopsysctl provides a rich set of command-line parameters to allow for fast and highly-configurable deployments of Black Duck, OpsSight Connector, and Black Duck Alert. synopsysctl’s interface mimics that of kubectl and oc, making it immediately familiar to anyone with Kubernetes and/or Red Hat OpenShift experience.
 
     ## Black Duck
-    Black Duck is a comprehensive solution for managing security, license compliance, and code quality risks that come from the use of open source in applications and containers. Black Duck gives you unmatched visibility into third-party code, enabling you to control it across your software supply chain and throughout the application life cycle.
+    [Black Duck](https://www.synopsys.com/software-integrity/security-testing/software-composition-analysis.html) is a comprehensive solution for managing security, license compliance, and code quality risks that come from the use of open source in applications and containers. Black Duck gives you unmatched visibility into third-party code, enabling you to control it across your software supply chain and throughout the application life cycle.
 
     ### Supported Features
 
@@ -184,7 +184,7 @@ spec:
     * **Automatically monitor for new vulnerabilities** hat affect your BoM, with custom policies and workflow triggers to accelerate remediation and reduce your risk exposure.
 
     ## OpsSight Connector
-    Synopsys Black Duck OpsSight for Red Hat OpenShift Container Platform provides automated open source identification and monitoring in all container images in a Kubernetes or OpenShift cluster to give teams visibility into, and control over, the risks associated with open source components in those images.
+    [Synopsys Black Duck OpsSight](https://synopsys.atlassian.net/wiki/spaces/BDLM/pages/34242566/OpsSight) for Red Hat OpenShift Container Platform provides automated open source identification and monitoring in all container images in a Kubernetes or OpenShift cluster to give teams visibility into, and control over, the risks associated with open source components in those images.
 
     ### Supported Features
 
@@ -201,7 +201,7 @@ spec:
 
     ## About Synopsys
 
-    Synopsys helps development teams build secure, high-quality software, minimizing risks while maximizing speed and productivity. Synopsys, a recognized leader in application security, provides static analysis, software composition analysis, and dynamic analysis solutions that enable teams to quickly find and fix vulnerabilities and defects in proprietary code, open source components, and application behavior.
+    [Synopsys Software Integrity](https://www.synopsys.com/software-integrity.html) helps development teams build secure, high-quality software, minimizing risks while maximizing speed and productivity. Synopsys, a recognized leader in application security, provides static analysis, software composition analysis, and dynamic analysis solutions that enable teams to quickly find and fix vulnerabilities and defects in proprietary code, open source components, and application behavior.
   keywords: ['security', 'scanning', 'monitoring']
   maintainers:
   - name: Synopsys, Inc
@@ -225,6 +225,8 @@ spec:
      url: https://www.synopsys.com/software-integrity.html
    - name: Synopsys Operator Documentation
      url: https://synopsys.atlassian.net/wiki/spaces/BDLM/pages/34373652/Synopsys+Operator
+   - name: synopsysctl download
+     url: https://github.com/blackducksoftware/synopsys-operator/releases
    - name: Black Duck Datasheet
      url: https://www.synopsys.com/content/dam/synopsys/sig-assets/datasheets/blackduck-sca-ds-ul.pdf
    - name: OpsSight Data Sheet
@@ -262,6 +264,7 @@ spec:
           resources:
           - clusterrolebindings
           - clusterroles
+          - deployments
           verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
         - apiGroups: [""]
           resources:
@@ -309,25 +312,25 @@ spec:
                 - ./operator
                 env:
                 - name: SEAL_KEY
-                  value: "abcdefghijklmnopqrstuvwxyz01234!"
-                - name: "SO_DRYRUN"
-                  value: false
-                - name: "SO_LOGLEVEL"
+                  value: "abcdefghijklmnopqrstuvwxyz01234"
+                - name: SO_DRYRUN
+                  value: "false"
+                - name: SO_LOGLEVEL
                   value: "debug"
-                - name: "SO_NAMESPACE"
+                - name: SO_NAMESPACE
                   value: ""
-                - name: "SO_THREADINESS"
-                  value: 5
-                - name: "SO_POSTGRESRESTARTINMINS"
-                  value: 10
-                - name: "SO_PODWAITTIMEOUTSECONDS"
-                  value: 600
-                - name: "SO_RESYNCINTERVALINSECONDS"
-                  value: 120
-                - name: "SO_TERMINATIONGRACEPERIODSECONDS"
-                  value: 180
-                - name: "SO_OPERATORTIMEBOMBINSECONDS"
-                  value: 315576000
+                - name: SO_THREADINESS
+                  value: "5"
+                - name: SO_POSTGRESRESTARTINMINS
+                  value: "10"
+                - name: SO_PODWAITTIMEOUTSECONDS
+                  value: "600"
+                - name: SO_RESYNCINTERVALINSECONDS
+                  value: "120"
+                - name: SO_TERMINATIONGRACEPERIODSECONDS
+                  value: "180"
+                - name: SO_OPERATORTIMEBOMBINSECONDS
+                  value: "315576000"
                 image: docker.io/blackducksoftware/synopsys-operator:2019.4.0-RC
                 imagePullPolicy: Always
                 ports:
@@ -338,11 +341,11 @@ spec:
                 - ./app
                 env:
                 - name: ADDR
-                  value: 0.0.0.0
+                  value: "0.0.0.0"
                 - name: PORT
                   value: "3000"
                 - name: GO_ENV
-                  value: production
+                  value: "production"
                 image: docker.io/blackducksoftware/synopsys-operator:2019.4.0-RC
                 imagePullPolicy: Always
                 ports:
@@ -376,10 +379,10 @@ spec:
             version: v1
           - kind: ClusterRole
             name: ""
-            version: rbac.authorization.k8s.io/v1
+            version: authorization.openshift.io/v1
           - kind: ClusterRoleBinding
             name: ""
-            version: rbac.authorization.k8s.io/v1
+            version: authorization.openshift.io/v1
           - kind: PersistentVolumeClaim
             name: ""
             version: v1
@@ -476,10 +479,10 @@ spec:
             version: v1
           - kind: ClusterRole
             name: ""
-            version: rbac.authorization.k8s.io/v1
+            version: authorization.openshift.io/v1
           - kind: ClusterRoleBinding
             name: ""
-            version: rbac.authorization.k8s.io/v1
+            version: authorization.openshift.io/v1
       specDescriptors:
         - description: Namespace for the OpsSight Connector.
           displayName: Namespace
