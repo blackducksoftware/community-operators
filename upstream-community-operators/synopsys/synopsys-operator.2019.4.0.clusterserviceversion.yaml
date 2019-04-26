@@ -318,7 +318,9 @@ spec:
                 - name: SO_LOGLEVEL
                   value: "debug"
                 - name: SO_NAMESPACE
-                  value: ""
+                  valueFrom:
+                    fieldRef:
+                      fieldPath: metadata.namespace
                 - name: SO_THREADINESS
                   value: "5"
                 - name: SO_POSTGRESRESTARTINMINS
