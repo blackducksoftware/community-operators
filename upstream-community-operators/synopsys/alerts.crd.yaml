@@ -18,4 +18,6 @@ spec:
     plural: alerts
     singular: alert
   scope: Cluster
+  subresources:
+    status: {}
   version: v1
