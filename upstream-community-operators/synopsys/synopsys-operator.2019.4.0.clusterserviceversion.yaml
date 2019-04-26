@@ -521,6 +521,11 @@ spec:
           path: logLevel
           x-descriptors:
           - urn:alm:descriptor:com.tectonic.ui:label
+        - description: Enable Skyfire testing
+          displayName: EnableSkyfire
+          path: enableSkyfire
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:booleanSwitch
       statusDescriptors:
         - description: The state of the OpsSight pods.
           displayName: State
