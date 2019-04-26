@@ -18,4 +18,6 @@ spec:
     plural: blackducks
     singular: blackduck
   scope: Cluster
+  subresources:
+    status: {}
   version: v1
