@@ -439,6 +439,16 @@ spec:
           path: environs
           x-descriptors:
           - urn:alm:descriptor:com.tectonic.ui:label
+        - description: Controls which Black Duck services to expose outside the cluster.
+          displayName: ExposeService
+          path: exposeService
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:label
+        - description: Certificate Name
+          displayName: CertificateName
+          path: certificateName
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:label
       statusDescriptors:
         - description: Externally Black Duck instance IP address, if known.
           displayName: IP
@@ -526,6 +536,29 @@ spec:
           path: enableSkyfire
           x-descriptors:
           - urn:alm:descriptor:com.tectonic.ui:booleanSwitch
+        - description: Skyfire object
+          displayName: Skyfire
+          path: skyfire
+        - description: Perceiver object which percieves cluster events
+          displayName: Perceiver
+          path: perceiver
+        - description: Perceptor object which is the core OpsSight container
+          displayName: Perceptor
+          path: perceptor
+        - description: ScannerPod object which contains the scanner and image getter capabilities
+          displayName: ScannerPod
+          path: scannerPod
+        - description: Blackduck object which stores the Black Duck instance
+          displayName: Blackduck
+          path: blackduck
+        - description: Prometheus object which stores the prometheus info
+          displayName: Prometheus
+          path: prometheus
+        - description: Name of the configmap
+          displayName: ConfigMapName
+          path: configMapName
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:label
       statusDescriptors:
         - description: The state of the OpsSight pods.
           displayName: State
