@@ -8,7 +8,7 @@ metadata:
       categories: "Security, Monitoring"
       description: "Synopsys Operator is a cloud-native administration utility for Synopsys software."
       repository: https://github.com/blackducksoftware/synopsys-operator
-      containerImage: docker.io/blackducksoftware/synopsys-operator:2019.4.0-RC
+      containerImage: docker.io/blackducksoftware/synopsys-operator:2019.4.0
       createdAt: 2018-12-14T17:09:00Z
       support: Synopsys, Inc
       certified: "false"
@@ -333,7 +333,7 @@ spec:
                   value: "180"
                 - name: SO_OPERATORTIMEBOMBINSECONDS
                   value: "315576000"
-                image: docker.io/blackducksoftware/synopsys-operator:2019.4.0-RC
+                image: docker.io/blackducksoftware/synopsys-operator:2019.4.0
                 imagePullPolicy: Always
                 ports:
                 - containerPort: 8080
@@ -348,7 +348,7 @@ spec:
                   value: "3000"
                 - name: GO_ENV
                   value: "production"
-                image: docker.io/blackducksoftware/synopsys-operator:2019.4.0-RC
+                image: docker.io/blackducksoftware/synopsys-operator:2019.4.0
                 imagePullPolicy: Always
                 ports:
                 - containerPort: 3000
