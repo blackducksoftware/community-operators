@@ -259,7 +259,7 @@ spec:
         - apiGroups: ["route.openshift.io"]
           resources:
           - routes
-          verbs: ["get", "create"]
+          verbs: ["get", "create", "list", "delete", "deletecollection"]
         - apiGroups: ["rbac.authorization.k8s.io"]
           resources:
           - clusterrolebindings
