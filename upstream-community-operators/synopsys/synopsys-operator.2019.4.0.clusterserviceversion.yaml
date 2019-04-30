@@ -237,11 +237,11 @@ spec:
    - type: OwnNamespace
      supported: true
    - type: SingleNamespace
-     supported: false
+     supported: true
    - type: MultiNamespace
      supported: false
    - type: AllNamespaces
-     supported: true
+     supported: false
   install:
     strategy: deployment
     spec:
@@ -256,10 +256,6 @@ spec:
           resources:
           - securitycontextconstraints
           verbs: ["get", "update", "patch"]
-        - apiGroups: ["route.openshift.io"]
-          resources:
-          - routes
-          verbs: ["get", "create"]
         - apiGroups: ["rbac.authorization.k8s.io"]
           resources:
           - clusterrolebindings
