@@ -313,7 +313,7 @@ spec:
         - apiGroups: ["image.openshift.io"]
           resources:
           - images
-          verbs: ["get", "list", "watch"]
+          verbs: ["get", "list", "watch", "update"]
       deployments:
       - name: synopsys-operator
         spec:
