@@ -17,5 +17,7 @@ spec:
     listKind: OpsSightList
     plural: opssights
     singular: opssight
+    shortNames:
+    - ops
   scope: Cluster
   version: v1
