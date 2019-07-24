@@ -17,5 +17,8 @@ spec:
     listKind: BlackduckList
     plural: blackducks
     singular: blackduck
+    shortNames:
+    - bds
+    - bd
   scope: Cluster
   version: v1
