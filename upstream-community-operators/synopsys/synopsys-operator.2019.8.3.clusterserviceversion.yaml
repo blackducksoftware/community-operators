@@ -1,14 +1,14 @@
 apiVersion: operators.coreos.com/v1alpha1
 kind: ClusterServiceVersion
 metadata:
-  name: synopsys-operator.2019.6.2
+  name: synopsys-operator.2019.8.3
   namespace: placeholder
   annotations:
       capabilities: "Full Lifecycle"
       categories: "Security, Monitoring"
       description: "Synopsys Operator is a cloud-native administration utility for Synopsys software."
       repository: https://github.com/blackducksoftware/synopsys-operator
-      containerImage: docker.io/blackducksoftware/synopsys-operator:2019.6.2
+      containerImage: docker.io/blackducksoftware/synopsys-operator:2019.8.3
       createdAt: 2019-07-22T17:09:00Z
       support: Synopsys, Inc
       certified: "false"
@@ -167,7 +167,7 @@ metadata:
         ]
 spec:
   displayName: Synopsys Operator
-  version: 2019.6.2
+  version: 2019.8.3
   description: |-
     [Synopsys Operator](https://synopsys.atlassian.net/wiki/spaces/BDLM/pages/34373652/Synopsys+Operator) is a cloud-native administration utility for Synopsys software. Synopsys Operator assists in the deployment and management of Synopsys software like Black Duck, OpsSight Connector, and Black Duck Alert, in a Kubernetes and Red Hat OpenShift environment.
 
@@ -353,7 +353,7 @@ spec:
                   value: "alerts.synopsys.com,blackducks.synopsys.com,opssights.synopsys.com"
                 - name: SO_ISCLUSTERSCOPED
                   value: "true"
-                image: docker.io/blackducksoftware/synopsys-operator:2019.6.2
+                image: docker.io/blackducksoftware/synopsys-operator:2019.8.3
                 imagePullPolicy: Always
                 ports:
                 - containerPort: 8080
