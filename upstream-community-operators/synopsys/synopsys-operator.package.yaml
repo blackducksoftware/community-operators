@@ -1,4 +1,4 @@
 packageName: synopsys
 channels:
   - name: stable
-    currentCSV: synopsys-operator.2019.6.2
+    currentCSV: synopsys-operator.2019.8.3
