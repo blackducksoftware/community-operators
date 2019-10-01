@@ -104,7 +104,7 @@ metadata:
                     "concurrentScanLimit": 2
                   }
                 ],
-                "blackduckPassword": "<BLACKDUCK_DEFAULT_PASSWORD>"
+                "blackduckPassword": "<BLACKDUCK_DEFAULT_PASSWORD>",
                 "connectionsEnvironmentVariableName": "blackduck.json",
                 "tlsVerification": false,
                 "initialCount": 0,
