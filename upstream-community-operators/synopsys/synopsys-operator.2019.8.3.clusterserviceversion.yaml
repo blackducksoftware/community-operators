@@ -112,7 +112,7 @@ metadata:
                 "blackduckSpec": {
                   "namespace": "",
                   "size": "small",
-                  "version": "2019.6.1",
+                  "version": "2019.8.0",
                   "exposeService": "NONE",
                   "livenessProbes": false,
                   "persistentStorage": false,
