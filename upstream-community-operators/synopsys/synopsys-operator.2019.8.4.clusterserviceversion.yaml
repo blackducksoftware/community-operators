@@ -1,7 +1,7 @@
 apiVersion: operators.coreos.com/v1alpha1
 kind: ClusterServiceVersion
 metadata:
-  name: synopsys-operator.2019.8.3
+  name: synopsys-operator.2019.8.4
   namespace: placeholder
   annotations:
       capabilities: "Full Lifecycle"
@@ -94,24 +94,16 @@ metadata:
               "configMapName": "blackduck",
               "secretName": "blackduck",
               "blackduck": {
-                "externalHosts": [
-                  {
-                    "scheme": "https",
-                    "domain": "<BLACKDUCK_HOST>",
-                    "port": 443,
-                    "user": "<BLACKDUCK_USER>",
-                    "password": "<BLACKDUCK_PASSWORD>",
-                    "concurrentScanLimit": 2
-                  }
-                ],
                 "connectionsEnvironmentVariableName": "blackduck.json",
+                "blackduckPassword": "<COMMON_BLACKDUCK_PWD_OPSSIGHT_TYPE_BASE64_ENCODED>",
                 "tlsVerification": false,
                 "initialCount": 0,
                 "maxCount": 0,
                 "blackduckSpec": {
                   "namespace": "",
+                  "type": "opssight",
                   "size": "small",
-                  "version": "2019.8.0",
+                  "version": "2019.8.1",
                   "exposeService": "",
                   "livenessProbes": false,
                   "persistentStorage": false,
@@ -130,7 +122,8 @@ metadata:
             "spec": {
               "namespace": "blackduck-ephemeral",
               "size": "Small",
-              "version": "2019.8.0",
+              "type": "opssight",
+              "version": "2019.8.1",
               "exposeService": "NONE",
               "livenessProbes": false,
               "persistentStorage": false,
@@ -150,24 +143,24 @@ metadata:
             },
             "spec": {
               "namespace": "alert-test",
-              "version": "4.0.0",
-              "alertImage": "docker.io/blackducksoftware/blackduck-alert:4.0.0",
-              "cfsslImage": "docker.io/blackducksoftware/blackduck-cfssl:1.0.0",
+              "version": "5.0.0",
               "exposeService": "",
               "standAlone": true,
               "port": 8443,
-              "persistentStorage": false,
-              "alertMemory": "2560M",
-              "cfsslMemory": "640M",
               "encryptionPassword": "",
               "encryptionGlobalSalt": "",
-              "environs": [ "ALERT_SERVER_PORT:8443", "PUBLIC_HUB_WEBSERVER_HOST:<<BLACK_DUCK_HOST>>", "PUBLIC_HUB_WEBSERVER_PORT:443" ]
+              "environs": [ "ALERT_SERVER_PORT:8443", "PUBLIC_HUB_WEBSERVER_HOST:<<BLACK_DUCK_HOST>>", "PUBLIC_HUB_WEBSERVER_PORT:443" ],
+              "alertMemory": "2560Mi",
+              "cfsslMemory": "640Mi",
+              "persistentStorage": false,
+              "pvcSize": "",
+              "pvcStorageClass": ""
             }
           }
         ]
 spec:
   displayName: Synopsys Operator
-  version: 2019.8.3
+  version: 2019.8.4
   description: |-
     [Synopsys Operator](https://synopsys.atlassian.net/wiki/spaces/BDLM/pages/34373652/Synopsys+Operator) is a cloud-native administration utility for Synopsys software. Synopsys Operator assists in the deployment and management of Synopsys software like Black Duck, OpsSight Connector, and Black Duck Alert, in a Kubernetes and Red Hat OpenShift environment.
 
