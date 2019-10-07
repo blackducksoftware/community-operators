@@ -480,21 +480,6 @@ spec:
           path: certificateName
           x-descriptors:
           - urn:alm:descriptor:com.tectonic.ui:label
-        - description: Postgres Admin User Password
-          displayName: AdminPassword
-          path: adminPassword
-          x-descriptors:
-          - urn:alm:descriptor:com.tectonic.ui:label
-        - description: Postgres Postgres User Password
-          displayName: PostgresPassword
-          path: postgresPassword
-          x-descriptors:
-          - urn:alm:descriptor:com.tectonic.ui:label
-        - description: Postgres Black Duck User Password
-          displayName: UserPassword
-          path: userPassword
-          x-descriptors:
-          - urn:alm:descriptor:com.tectonic.ui:label
       statusDescriptors:
         - description: Externally Black Duck instance IP address, if known.
           displayName: IP
