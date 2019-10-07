@@ -369,21 +369,6 @@ spec:
                 ports:
                 - containerPort: 8080
                   protocol: TCP
-              - name: synopsys-operator-ui
-                command:
-                - ./app
-                env:
-                - name: ADDR
-                  value: "0.0.0.0"
-                - name: PORT
-                  value: "3000"
-                - name: GO_ENV
-                  value: production
-                image: registry.connect.redhat.com/blackducksoftware/synopsys-operator:latest
-                imagePullPolicy: Always
-                ports:
-                - containerPort: 3000
-                  protocol: TCP
   customresourcedefinitions:
     owned:
     - description: Manages Black Duck instances
@@ -478,6 +463,21 @@ spec:
         - description: Certificate Name
           displayName: CertificateName
           path: certificateName
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:label
+        - description: Postgres Admin User Password
+          displayName: AdminPassword
+          path: adminPassword
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:label
+        - description: Postgres Postgres User Password
+          displayName: PostgresPassword
+          path: postgresPassword
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:label
+        - description: Postgres Black Duck User Password
+          displayName: UserPassword
+          path: userPassword
           x-descriptors:
           - urn:alm:descriptor:com.tectonic.ui:label
       statusDescriptors:
